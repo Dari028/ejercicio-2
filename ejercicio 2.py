@@ -95,19 +95,36 @@ class sistemaV:
         return None
 
 
-    def verMedicamento(self,historia):
-        #busco la mascota y devuelvo el atributo solicitado
-        for masc in self.__lista_mascotas:
-            if historia == masc.verHistoria():
-                return masc.verLista_Medicamentos() 
-        return None
+    def verMedicamento(self,historia,Mascota):
+        
     
-    def eliminarMascota(self, historia):
-        for masc in self.__lista_mascotas:
-            if historia == masc.verHistoria():
-                self.__lista_mascotas.remove(masc)  #opcion con el pop
-                return True  #eliminado con exito
-        return False 
+        for historia  in self.__dict_caninos.items():
+            if historia == Mascota.verHistoria():
+                return Mascota.verLista_Medicamentos()
+
+        # Si no se encuentra en el diccionario de caninos, busco en el diccionario de felinos
+        for historia in self.__dict_felinos.items():
+            if historia == Mascota.verHistoria():
+                return Mascota.verLista_Medicamentos()
+
+        return None
+
+    
+    def eliminarMascota(self, historia,Mascota):
+       
+        for historia in self.__dict_caninos():
+            if historia == Mascota.verHistoria():
+                del self.__dict_caninos[Mascota.verHistoria]
+                return True  
+
+       
+        for historia in self.__dict_felinos.items():
+            if historia == Mascota.verHistoria():
+                del self.__dict_felinos[Mascota.verHistoria]
+                return True  
+
+        return False  
+ 
 
 def main():
     servicio_hospitalario = sistemaV()
