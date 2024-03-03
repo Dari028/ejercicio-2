@@ -84,11 +84,16 @@ class sistemaV:
    
 
     def verFechaIngreso(self,historia):
-        #busco la mascota y devuelvo el atributo solicitado
-        for masc in self.__lista_mascotas:
-            if historia == masc.verHistoria():
-                return masc.verFecha() 
+        fecha_canino = self.__dict_caninos.get(historia, None)
+        if fecha_canino is not None:
+            return fecha_canino['fecha_ingreso']
+
+        fecha_felino = self.__dict_felinos.get(historia, None)
+        if fecha_felino is not None:
+            return fecha_felino['fecha_ingreso']
+
         return None
+
 
     def verMedicamento(self,historia):
         #busco la mascota y devuelvo el atributo solicitado
