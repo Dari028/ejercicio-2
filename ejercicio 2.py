@@ -76,8 +76,11 @@ class sistemaV:
         pi=int(a)+int(j)
         return pi
     
-    def ingresarMascota(self,mascota):
-        self.__lista_mascotas.append(mascota) 
+    def ingresarMascota(self,mascota,tipo):
+        if tipo == 'canino':
+            self.__dict_caninos[mascota['id']] = mascota
+        elif tipo == 'felino':
+            self.__dict_felinos[mascota['id']] = mascota
    
 
     def verFechaIngreso(self,historia):
