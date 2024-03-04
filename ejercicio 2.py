@@ -81,15 +81,16 @@ class sistemaV:
             self.__dict_felinos[historia] = mascota
    
 
-    def verFechaIngreso(self,historia):
-        fecha_canino = self.__dict_caninos.get(historia, None)
-        if fecha_canino is not None:
-            return fecha_canino['fecha_ingreso']
-
-        fecha_felino = self.__dict_felinos.get(historia, None)
-        if fecha_felino is not None:
-            return fecha_felino['fecha_ingreso']
-
+    def verFechaIngreso(self, historia, mascota):
+        if isinstance(mascota, Mascota):
+            if mascota.ver_tipo() == 'canino':
+                fecha_canino = self.__dict_caninos.get(historia, None)
+                if fecha_canino is not None:
+                    return mascota.verFecha()
+            elif mascota.ver_tipo()== 'felino':
+                fecha_felino = self.__dict_felinos.get(historia, None)
+                if fecha_felino is not None:
+                    return mascota.verFecha()
         return None
 
 
@@ -141,7 +142,8 @@ def main():
                 print("No hay espacio ...") 
                 continue
             mas= Mascota()
-            historia=int(input("Ingrese la historia clínica de la mascota: "))
+            histori=int(input("Ingrese la historia clínica de la mascota: "))
+            historia=str(histori)
             #   verificacion=servicio_hospitalario.verDatosPaciente(historia)
             if servicio_hospitalario.verificarExiste(historia) == False:
                 nombre=input("Ingrese el nombre de la mascota: ")
@@ -195,8 +197,10 @@ def main():
                 print("Ya existe la mascota con el numero de histoira clinica")
 
         elif menu==2: # Ver fecha de ingreso
-            q = int(input("Ingrese la historia clínica de la mascota: "))
-            fecha = servicio_hospitalario.verFechaIngreso(q)
+            mas=Mascota()
+            qi = int(input("Ingrese la historia clínica de la mascota: "))
+            q=str(qi)
+            fecha = servicio_hospitalario.verFechaIngreso(q,mas)
             # if servicio_hospitalario.verificarExiste == True
             if fecha != None:
                 print("La fecha de ingreso de la mascota es: " + fecha)
