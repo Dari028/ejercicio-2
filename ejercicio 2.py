@@ -1,3 +1,4 @@
+from datetime import datetime
 class Medicamento:
     def __init__(self):
         self.__nombre = "" 
@@ -148,7 +149,18 @@ def main():
             if servicio_hospitalario.verificarExiste(historia) == False:
                 nombre=input("Ingrese el nombre de la mascota: ")
                 peso=float(input("Ingrese el peso de la mascota: "))
-                fecha=input("Ingrese la fecha de ingreso (dia/mes/año): ")
+                while True:
+                    fecha_str = input("Por favor, ingresa una fecha en el formato dd/mm/aa: ")
+                    try:
+                        fechaformat = datetime.strptime(fecha_str, "%d/%m/%y")
+                        fecha=fechaformat.strftime("%d/%m/%y")
+                        
+                        break
+                    except ValueError:
+                        print("Formato de fecha incorrecto. Por favor, intenta de nuevo.")
+        
+                
+                
                 while True:
                     tip=input("ingrese el tipo de animal 1- canino  2-felino ")
                     if tip=="1":
