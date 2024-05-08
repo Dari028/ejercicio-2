@@ -274,6 +274,7 @@ def main():
         
         else:
             print("Usted ingresó una opción no válida, intentelo nuevamente...")
+            print("ttt")
 
 if __name__=='__main__':
     main()
